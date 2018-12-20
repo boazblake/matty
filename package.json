@@ -1,40 +1,41 @@
 {
-  "name": "drone-app",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.3",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-1": "^6.24.1",
-    "clean-webpack-plugin": "^0.1.18",
-    "css-loader": "^0.28.10",
-    "file-loader": "^1.1.10",
-    "html-webpack-plugin": "^3.0.4",
-    "style-loader": "^0.20.2",
-    "webpack": "^4.0.1",
-    "webpack-cli": "^2.0.9",
-    "webpack-dev-server": "^3.1.0"
-  },
-  "dependencies": {
-    "animejs": "^2.2.0",
-    "bulma": "^0.7.2",
-    "chart.js": "^2.7.3",
-    "data.maybe": "^1.2.3",
-    "data.task": "^3.1.2",
-    "mithril": "^2.0.0-rc.1",
-    "mithril-stream": "^1.1.0",
-    "moment": "^2.22.2",
-    "plotly.js-dist": "^1.42.5",
-    "ramda": "^0.25.0",
-    "wrld.js": "^0.1.1960"
-  },
-  "scripts": {
-    "start": "yarn web",
-    "web": "webpack-dev-server --open",
-    "build": "webpack --config webpack.config.js"
-  }
+	"name": "drone-app",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-core": "^6.26.0",
+		"babel-loader": "^8.0.4",
+		"babel-plugin-transform-react-jsx": "^6.24.1",
+		"babel-preset-es2015": "^6.24.1",
+		"babel-preset-stage-1": "^6.24.1",
+		"clean-webpack-plugin": "^1.0.0",
+		"css-loader": "^2.0.1",
+		"file-loader": "^2.0.0",
+		"html-webpack-plugin": "^3.0.4",
+		"style-loader": "^0.23.1",
+		"webpack": "^4.0.1",
+		"webpack-cli": "^3.1.2",
+		"webpack-dev-server": "^3.1.0"
+	},
+	"dependencies": {
+		"@babel/core": "^7.2.2",
+		"animejs": "^2.2.0",
+		"bulma": "^0.7.2",
+		"chart.js": "^2.7.3",
+		"data.maybe": "^1.2.3",
+		"data.task": "^3.1.2",
+		"mithril": "^2.0.0-rc.1",
+		"mithril-stream": "^1.1.0",
+		"moment": "^2.22.2",
+		"plotly.js-dist": "^1.42.5",
+		"ramda": "^0.26.0",
+		"wrld.js": "^0.1.1960"
+	},
+	"scripts": {
+		"start": "yarn web",
+		"web": "webpack-dev-server --open",
+		"build": "webpack --config webpack.config.js"
+	}
 }

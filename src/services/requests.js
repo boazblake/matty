@@ -1,22 +1,17 @@
 import m from "mithril";
 import Task from "data.task";
+import apiKey from '../services.js'
 
-const baseUrl = "https://react-assessment-api.herokuapp.com/api";
+const baseUrl = `https://api.darksky.net/forecast/${apiKey}`;
 
-const getTask = url =>
+export  const getWeatherTask = ({lat,long, time}) =>
   new Task((rej, res) =>
     m
       .request({
         method: "GET",
-        url: `${baseUrl}/${url}`,
+        url: `${baseUrl}/${lat},${long},${time}`,
         withCredentials: true,
         headers: { "Content-Type": "application/json" },
       })
       .then(res, rej)
   );
-
-export const droneDataTask = () => getTask("drone");
-export const droneWeatherByLLTask = (latt, long) =>
-  getTask(`weather/location/search/?lattlong=${latt}${long}`);
-export const droneWeatherByWoeidTask = woeid =>
-  getTask(`weather/location/${woeid}`);
