@@ -22,7 +22,10 @@ module.exports = {
     filename: "bundle.js",
   },
   module: {
-    rules: [
+    rules: [{
+      test: /\.mjs$/,
+      type: "javascript/auto",
+    },
       {
         test: /\.jsx$/,
         exclude: /node_modules/,

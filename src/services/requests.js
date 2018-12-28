@@ -1,17 +1,30 @@
 import m from "mithril";
 import Task from "data.task";
-import apiKey from '../services.js'
+import apiKey from '../../secrets.js'
 
-const baseUrl = `https://api.darksky.net/forecast/${apiKey}`;
+const baseUrl = `http://api.apixu.com/v1`;
 
-export  const getWeatherTask = ({lat,long, time}) =>
+export const getCurrentWeatherTask = ({lat,lon}) =>
   new Task((rej, res) =>
     m
       .request({
         method: "GET",
-        url: `${baseUrl}/${lat},${long},${time}`,
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
+        url: `${baseUrl}/current.json?key=${apiKey}&q=${lat},${lon}`,
+        withCredentials: false,
+        headers: { "Content-Type": "application/json", "Accept": "*/*"},
+      })
+      .then(res, rej)
+  );
+
+
+export const getForcastWeatherTask = ({ lat, lon }) => days => 
+  new Task((rej, res) =>
+    m
+      .request({
+        method: "GET",
+        url: `${baseUrl}/forecast.json?key=${apiKey}&q=${lat},${lon}&days=${days}`,
+        withCredentials: false,
+        headers: { "Content-Type": "application/json", "Accept": "*/*" },
       })
       .then(res, rej)
   );

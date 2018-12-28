@@ -1,36 +1,33 @@
 import m from "mithril";
-import { log } from "../services/index.js";
-import Models from "../Models.js";
-import { set, lensProp } from "ramda";
+import Location from '../Location/component.js'
+import Current from '../Current/component.js'
+import Forecast from '../Forecast/component.js'
 import { animateFadeIn } from "../services/animations.js";
 
 const Home = () => {
+  const onSuccess = Models => data => Models.Data = data
+const onError = Models => data => Models.Errors = data
+
+
+  const load = ({ attrs: { Models } }) =>
+    Models.GetCurrentWeather(Models.Location)
+    .chain(_ => Models.GetForcastWeatherTask(Models.Location)(Models.ForcastDays))
+      .fork( onError(Models), onSuccess(Models))
  
-  const onError = error => {
-    log("error")(error);
-    Models.Errors.push(error);
-  };
-
-  const onSuccess = data => { Models.data = data; console.log(data)};
-
-  const getData = () =>
-    Models.getWeather()
-      .chain(toTemp)
-      .chain(updateChrono)
-      .fork(onError, onSuccess);
-
   return {
-    oninit: getData,
+    oninit: load,
     oncreate: animateFadeIn,
-    view: () =>
-      m(".container box", [
-        m("h1.title", "Dark Sky"),
-        m(
-          "pre.pre",
-          `Last Data Point: ${JSON.stringify(Models.Data, null, 2)}`
-        ),
-      ]),
-  };
+    view: ({attrs:{Models}}) =>    
+     m(".container box",
+        (Models.Data)
+          ? [
+              m(Location, { location: Models.Data.location, icon: Models.Data.current.condition.icon }),
+              m(Current, { current: Models.Data.current }),
+              m(Forecast, { forecast: Models.Data.forecast}),
+            ]
+          : m('h1', 'Loading')
+      ) }
+ 
 };
 
-export default Drone;
+export default Home;
