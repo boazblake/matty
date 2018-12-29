@@ -1,22 +1,12 @@
 import m from "mithril";
-import Layout from "./layout/component.js";
-import Home from "./Home/component.js";
+import Layout from "./Layout.js";
+import Home from "./Home.js";
 
 const routes = Models => ({
   "/home": {
     view: () => m(Layout, m(Home, Models)),
   },
 });
-
-
-// const getLocation = ({ attrs: model }) => {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(position => {
-//       Models.Location.lat = position.coords.latitude
-//       Models.Location.lon = position.coords.latitude
-//     })
-//   } 
-// }
 
 export const App = ({ attrs: Models }) => {
   return {
