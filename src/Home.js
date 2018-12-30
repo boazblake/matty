@@ -1,13 +1,16 @@
 import m from "mithril";
 import Location from './Location.js'
 import Forecast from './Forecast.js'
-import Chart from './Chart.js'
+import TempChart from './TempChart.js'
 import { animateFadeIn } from "./services/animations.js";
 
 const Home = ({ attrs: { Models } }) => {
   const onSuccess = Models => data => {
     Models.Data = data;
-    setTimeout(() => load(({ attrs: { Models } })), 30000)
+    // setTimeout(() => load(({ attrs: { Models } })), 30000)
+
+//need to use https so replacing dimple and d3 with charts :/ here we go again...
+
   }
   const onError = Models => data => Models.Errors = data
 
@@ -26,7 +29,7 @@ const Home = ({ attrs: { Models } }) => {
           ? [
               m(Location, { location: Models.Data.location, current: Models.Data.current , icon: Models.Data.current.condition.icon}),
               m(Forecast, { forecast: Models.Data.forecast}),
-              m(Chart, {Models, forecast: Models.Data.forecast })
+              m(TempChart, {Models, forecast: Models.Data.forecast })
             ]
           : m('h1', 'Loading')
       ) }

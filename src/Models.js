@@ -15,7 +15,9 @@ const Models = {
   OnSuccess: function(data) {
     Models.Data = data
     console.log('onS', Models)
-  }
+  },
+  ChartData:null,
+  Chart:null
 };
 
 export default Models;
