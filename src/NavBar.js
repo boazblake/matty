@@ -33,6 +33,8 @@ const NavBar = () => {
 		'background-color': '#ecf0f1',
 	}
 
+	const linkStyle = { display: 'block', 'font-size': '2rem' }
+
 	const state = {
 		showNav: false,
 		navStyle: hideNavStyle,
@@ -58,7 +60,7 @@ const NavBar = () => {
 	return {
 		view: (v) =>
 			m(
-				'nav.navbar is-transparent',
+				'nav.navbar is-transparent is-hide-desktop',
 				{
 					style: state.navStyle,
 					role: 'navigation',
@@ -84,6 +86,56 @@ const NavBar = () => {
 								m('span', { style: state.burgerStyle, 'aria-hidden': 'true' }),
 							]
 						),
+						m('.navbar-menu', [
+							m(
+								'.navbar-start',
+								[
+									m(
+										'a.navbar-item',
+										{
+											oncreate: () => m.route.link,
+											href: '#!/about',
+										},
+										'About'
+									),
+									m(
+										'a.navbar-item',
+										{
+											oncreate: () => m.route.link,
+											href: '#!/products',
+										},
+										'Products'
+									),
+									m('.navbar-item has-dropdown is-hoverable "', [
+										m('a.navbar-link', 'More'),
+										m('.navbar-dropdown  is-active', [ m('a.navbar-item', 'Careers'), m('a.navbar-item', 'Contact') ]),
+									]),
+								],
+								m('.navbar-end', [
+									m(
+										'.navbar-item',
+										m('.buttons', [
+											m(
+												'a.button is-primary',
+												{
+													oncreate: () => m.route.link,
+													href: '#!/customers/register',
+												},
+												m('strong', 'Sign Up')
+											),
+											m(
+												'a.button is-light',
+												{
+													oncreate: () => m.route.link,
+													href: '#!/customers/login',
+												},
+												m('strong', 'Login')
+											),
+										])
+									),
+								])
+							),
+						]),
 					]),
 					state.showNav &&
 						m(
@@ -100,9 +152,9 @@ const NavBar = () => {
 								m('aside.menu', [
 									m('ul.menu-list', [
 										m(
-											'a.a',
+											'a.a menu-label',
 											{
-												style: { display: 'block', 'font-size': '10rem' },
+												style: linkStyle,
 												oncreate: () => m.route.link,
 												href: '#!/about',
 												onclick: () => {
@@ -112,9 +164,9 @@ const NavBar = () => {
 											'About'
 										),
 										m(
-											'a.a',
+											'a.a menu-label',
 											{
-												style: { display: 'block', 'font-size': '10rem' },
+												style: linkStyle,
 												oncreate: () => m.route.link,
 												href: '#!/products',
 												onclick: () => {
@@ -124,9 +176,9 @@ const NavBar = () => {
 											'Products'
 										),
 										m(
-											'a.a',
+											'a.a menu-label',
 											{
-												style: { display: 'block', 'font-size': '10rem' },
+												style: linkStyle,
 												oncreate: m.route.link,
 												href: '#',
 												onclick: () => {
