@@ -1,9 +1,9 @@
-import m from "mithril";
+import m from 'mithril'
 
 const Layout = {
-  view: ({ children }) => {
-    return [m(".title"), "WEATHER APP", children];
-  },
-};
+	view: ({ children }) => {
+		return [ m('.title'), children ]
+	},
+}
 
-export default Layout;
+export default Layout
