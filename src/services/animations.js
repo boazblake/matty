@@ -8,8 +8,8 @@ export const animateChildrenEntrance = ({ dom }) => {
 
 	return children.map((child, index) => {
 		setTimeout(() => {
-			child.animate([ { transform: 'translate3d(0,-100%,0)', opacity: 0 }, { transform: 'none', opacity: 1 } ], {
-				duration: 850,
+			child.animate([ { transform: 'translate3d(0,-10%,0)', opacity: 0 }, { transform: 'none', opacity: 1 } ], {
+				duration: 900,
 			})
 		}, (index + 1) * 200)
 	})
@@ -60,11 +60,11 @@ export const animateChildrenFadeIn = ({ dom }) => {
 	let children = [ ...dom.children ]
 	children.map((child, index) => {
 		child.style.opacity = 0
-		child.style.transition = 'opacity .4s ease-in-out'
+		child.style.transition = 'opacity .2s ease-in-out'
 
 		return setTimeout(() => {
 			child.style.opacity = 1
-		}, (index + 1) * 200)
+		}, (index + 1) * 150)
 	})
 }
 

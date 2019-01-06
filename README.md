@@ -1,1 +1,1 @@
-Mithril Weather App using d3, dimple js for chart and https://www.apixu.com/api-explorer.aspx for weather
+Matty App

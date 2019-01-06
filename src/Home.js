@@ -1,26 +1,18 @@
 import m from 'mithril'
-
-import Loader from './services/loader.js'
+import wine from './assets/wine'
+import champagne from './assets/champagne'
+import Heading from './assets/heading.js'
 
 const Home = (vnode) => {
-	console.log('component created?? HOME', vnode)
-	const state = { data: false }
+	const state = { champagne: false }
 
-	const load = (vnode) => {
-		setTimeout(() => {
-			state.data = true
-			console.log('load', state)
-			m.redraw()
-		}, 100000)
-	}
+	setTimeout(() => {
+		state.champagne = true
+		m.redraw()
+	}, 3000)
 
 	return {
-		oninit: load,
-		view: (vnode) => {
-			console.log(state)
-			return m('.container box', state.data ? [ m('h1', 'loaded') ] : [ m(Loader) ])
-		},
+		view: (vnode) => [ m('.container', [ m(wine), state.champagne ? m(champagne) : '', Heading ]) ],
 	}
 }
-
 export default Home
