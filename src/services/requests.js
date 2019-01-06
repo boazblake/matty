@@ -1,30 +1,16 @@
-import m from "mithril";
-import Task from "data.task";
-import apiKey from '../../secrets.js'
+import m from 'mithril'
+import Task from 'data.task'
 
-const baseUrl = `http://api.apixu.com/v1`;
+const baseUrl = `https://jsonplaceholder.typicode.com`
 
-export const getCurrentWeatherTask = ({lat,lon}) =>
-  new Task((rej, res) =>
-    m
-      .request({
-        method: "GET",
-        url: `${baseUrl}/current.json?key=${apiKey}&q=${lat},${lon}`,
-        withCredentials: false,
-        headers: { "Content-Type": "application/json", "Accept": "*/*"},
-      })
-      .then(res, rej)
-  );
-
-
-export const getForcastWeatherTask = ({ lat, lon }) => days => 
-  new Task((rej, res) =>
-    m
-      .request({
-        method: "GET",
-        url: `${baseUrl}/forecast.json?key=${apiKey}&q=${lat},${lon}&days=${days}`,
-        withCredentials: false,
-        headers: { "Content-Type": "application/json", "Accept": "*/*" },
-      })
-      .then(res, rej)
-  );
+export const loadProducts = () =>
+	new Task((rej, res) =>
+		m
+			.request({
+				method: 'GET',
+				url: `${baseUrl}/users`,
+				withCredentials: false,
+				headers: { 'Content-Type': 'application/json' },
+			})
+			.then(res, rej)
+	)

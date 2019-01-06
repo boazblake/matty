@@ -41,14 +41,12 @@ const NavBar = () => {
 
 	const hideNav = () => {}
 
-	const showNavBar = (e) => {
+	const showNavBar = () => {
 		state.showNav = !state.showNav
 
 		if (state.showNav) {
-			console.log(state.navStyle)
 			state.navStyle = showNavStyle
 			state.burgerStyle = showBurgerStyle
-			console.log(state.navStyle)
 		} else {
 			state.navStyle = hideNavStyle
 			state.burgerStyle = hideBurgerStyle
@@ -58,9 +56,9 @@ const NavBar = () => {
 	}
 
 	return {
-		view: () =>
+		view: (v) =>
 			m(
-				'nav.navbar',
+				'nav.navbar is-transparent',
 				{
 					style: state.navStyle,
 					role: 'navigation',
@@ -70,9 +68,7 @@ const NavBar = () => {
 					m('.navbar-brand', [
 						m('a.navbar-item', { oncreate: m.route.link, href: '#' }, [
 							m('img', {
-								src: 'https://loading.io/patterns/bubble/lg.boiling-water-texture.png',
-								width: '112px',
-								height: '28px',
+								src: 'https://image.freepik.com/free-vector/pouring-red-wine_23-2147510336.jpg',
 							}),
 						]),
 						m(
@@ -100,33 +96,46 @@ const NavBar = () => {
 									'z-index': 100,
 								},
 							},
-							'NAVIGATION',
 							[
-								m('ul', [
-									m(
-										'a[href=/]',
-										{
-											style: { display: 'block', 'font-size': '10rem' },
-											oncreate: m.route.link,
-											href: 'about',
-											onclick: () => {
-												showNavBar()
+								m('aside.menu', [
+									m('ul.menu-list', [
+										m(
+											'a.a',
+											{
+												style: { display: 'block', 'font-size': '10rem' },
+												oncreate: () => m.route.link,
+												href: '#!/about',
+												onclick: () => {
+													showNavBar()
+												},
 											},
-										},
-										'About'
-									),
-									m(
-										'a[href=/]',
-										{
-											style: { display: 'block', 'font-size': '10rem' },
-											oncreate: m.route.link,
-											href: 'home',
-											onclick: () => {
-												showNavBar()
+											'About'
+										),
+										m(
+											'a.a',
+											{
+												style: { display: 'block', 'font-size': '10rem' },
+												oncreate: () => m.route.link,
+												href: '#!/products',
+												onclick: () => {
+													showNavBar()
+												},
 											},
-										},
-										'Home'
-									),
+											'Products'
+										),
+										m(
+											'a.a',
+											{
+												style: { display: 'block', 'font-size': '10rem' },
+												oncreate: m.route.link,
+												href: '#',
+												onclick: () => {
+													showNavBar()
+												},
+											},
+											'Home'
+										),
+									]),
 								]),
 							]
 						),

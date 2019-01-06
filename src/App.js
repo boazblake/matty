@@ -4,6 +4,7 @@ import Home from './pages/Home.js'
 import Splash from './assets/splash/component.js'
 import Maintenance from './pages/Maintenance.js'
 import About from './pages/About.js'
+import Products from './pages/Products.js'
 import Login from './pages/Login.js'
 import Register from './pages/Register.js'
 
@@ -30,6 +31,9 @@ const routes = (main, Models) => ({
 	},
 	'/about': {
 		render: () => m(Layout, m(About, Models)),
+	},
+	'/products': {
+		render: () => m(Layout, m(Products, Models)),
 	},
 
 	'/customers/login': {
