@@ -1,12 +1,15 @@
 import m from 'mithril'
 import Layout from './Layout.js'
-import Home from './Home.js'
+import Home from './pages/Home.js'
 import Splash from './assets/splash/component.js'
-import MaintenancePage from './MaintenancePage.js'
+import Maintenance from './pages/Maintenance.js'
+import About from './pages/About.js'
+import Login from './pages/Login.js'
+import Register from './pages/Register.js'
 
 const routes = (main, Models) => ({
 	'/home': {
-		onmatch() {
+		onmatch: () => {
 			// Show Loader until the promise has been resolved or rejected.
 			m.render(main, m(Layout, m(Splash)))
 
@@ -18,12 +21,22 @@ const routes = (main, Models) => ({
 			}).catch(
 				(/* e */) => {
 					// In case of server error we can show the maintenance page.
-					return MaintenancePage
+					return Maintenance
 				}
 			)
 		},
 
 		render: () => m(Layout, m(Home, Models)),
+	},
+	'/about': {
+		render: () => m(Layout, m(About, Models)),
+	},
+
+	'/customers/login': {
+		render: () => m(Layout, m(Login, Models)),
+	},
+	'/customers/register': {
+		render: () => m(Layout, m(Register, Models)),
 	},
 })
 

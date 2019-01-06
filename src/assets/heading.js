@@ -22,4 +22,4 @@ const Heading = (vnode) => {
 	}
 }
 
-export default m(Heading)
+export default Heading
